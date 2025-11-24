@@ -23,7 +23,7 @@ while true; do
     echo "2) Manually Add User"
     echo "3) Create Faculty User Accounts"
     echo "4) Delete Existing Users"
-    echo "5) Exit and cleanup (Deletes all Users)"
+    echo "5) Exit"
     echo
 
     read -p "Enter choice [1-5] (press ENTER for default): " choice
