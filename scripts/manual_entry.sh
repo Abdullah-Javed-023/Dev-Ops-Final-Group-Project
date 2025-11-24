@@ -5,8 +5,10 @@
 # DeelTech Solutions - Manual User Entry
 # Adds a user to the shared faculty list
 
+SCRIPT_DIR="$(dirname "$0")"
+PROJECT_ROOT="$SCRIPT_DIR/.."
 # The file where scraper saves names
-NAMES_FILE="faculty_names.txt"
+NAMES_FILE="$PROJECT_ROOT/faculty_names.txt"
 
 echo "--- Manual User Entry ---"
 
@@ -27,3 +29,9 @@ fi
 echo "$first_name $last_name" >> "$NAMES_FILE"
 
 echo "[SUCCESS] Added '$first_name $last_name' to $NAMES_FILE"
+
+if [[ -f "$SCRIPT_DIR/create_user.sh" ]]; then
+    bash "$SCRIPT_DIR/create_user.sh" "$first_name" "$last_name"
+else
+    echo "[ERROR] Could not find create_user.sh in $SCRIPT_DIR"
+fi

@@ -21,10 +21,12 @@ while true; do
     echo "=============================================="
     echo "1) Run Web Scraper & Name Parser (DEFAULT)"
     echo "2) Manually Add User"
-    echo "3) Exit"
+    echo "3) Create Faculty User Accounts"
+    echo "4) Delete Existing Users"
+    echo "5) Exit and cleanup (Deletes all Users)"
     echo
 
-    read -p "Enter choice [1-3] (press ENTER for default): " choice
+    read -p "Enter choice [1-5] (press ENTER for default): " choice
     choice=${choice:-$DEFAULT_CHOICE}
 
     case $choice in
@@ -37,7 +39,16 @@ while true; do
             bash "$SCRIPT_DIR/manual_entry.sh"
             ;;
         3)
-            echo "[INFO] Exiting program."
+            # This is the specific "option there to create user from list"
+            echo "[INFO] Processing existing list..."
+            bash "$SCRIPT_DIR/batch_process.sh"
+            ;;
+        4)
+            echo "[INFO] Erasing all Users"
+            bash "$SCRIPT_DIR/cleanup.sh"
+            ;;
+        5)
+            echo "[INFO] Exiting program"
             exit 0
             ;;
         *)
